@@ -53,6 +53,17 @@ Lee `guia.md` para instrucciones, checklists y preguntas de discusión.
 
 ## Preguntas
 
+### OCP
+
+**¿Porque los condicionales repetidos hacen mas caro el cambio?
+Porque siempre que se quiera agragar un nuevo tipo de objeto, en este caso de tartamientos, habria que cambiar el codigo que ya tenemos, lo que conllevaria a hacerlo mas largo y menos facil de leer.
+
+**¿Que pasaria si agregamos "ODONTOLOGIA" a los tartamientos?
+Antes de los cambios tendriamos que agrandar el codigo agregando su calculo de costo, sus indicaciones de los tartamientos y las indicaciones para preparar las salas y su calculo de impuesto, Despues de los cambios solo debemos crear una nueva clase de tratamiento.
+
+**¿Cuando una interfaz ayuda a extender un problema?
+Cuando sepamos que en un futuro el codigo se va a extender con diferentes tipos de una misma clase, ayudando como una base que se puede modificar
+
 ### LSP
 
 **¿Por qué lanzar UnsupportedOperationException puede ser señal de mal diseño?**

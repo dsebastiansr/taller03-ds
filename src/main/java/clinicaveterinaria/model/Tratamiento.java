@@ -50,6 +50,8 @@ public abstract  class Tratamiento implements ITratamiento{
 
     public abstract double getImpuesto();
 
+    public abstract String getSalaIndicaciones();
+    
     public int getId() {
         return id;
     }
