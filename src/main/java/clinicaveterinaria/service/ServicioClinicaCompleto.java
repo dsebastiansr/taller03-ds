@@ -1,17 +1,23 @@
 package clinicaveterinaria.service;
 
-import clinicaveterinaria.interfaces.IServicioClinica;
+import clinicaveterinaria.interfaces.ICitaService;
+import clinicaveterinaria.interfaces.IMascotaService;
+import clinicaveterinaria.interfaces.ITratamiento;
+import clinicaveterinaria.interfaces.IVeterinarioService;
+import clinicaveterinaria.interfaces.IFacturaService;
+import clinicaveterinaria.interfaces.IReporteService;
 import clinicaveterinaria.model.Cita;
 import clinicaveterinaria.model.Factura;
 import clinicaveterinaria.model.Mascota;
 import clinicaveterinaria.model.Tratamiento;
 import clinicaveterinaria.model.Veterinario;
 import clinicaveterinaria.repository.BaseDatos;
+import java.time.LocalDate;
 
 import java.util.List;
 
 
-public class ServicioClinicaCompleto implements IServicioClinica {
+public class ServicioClinicaCompleto implements IMascotaService, ICitaService, IFacturaService, ITratamiento, IVeterinarioService, IReporteService {
     private final MascotaService mascotaService;
     private final VeterinarioCrudService veterinarioService;
     private final CitaService citaService;
@@ -48,6 +54,7 @@ public class ServicioClinicaCompleto implements IServicioClinica {
         mascotaService.eliminarMascota(id);
     }
 
+        // ==================== IVeterinarioService ====================
     @Override
     public void crearVeterinario(Veterinario veterinario) {
         veterinarioService.crearVeterinario(veterinario);
@@ -69,6 +76,12 @@ public class ServicioClinicaCompleto implements IServicioClinica {
     }
 
     @Override
+    public Cita reservarCita(Mascota mascota, Veterinario veterinario, LocalDate fecha) {
+        throw new UnsupportedOperationException("reservarCita debe implementarse en el servicio correspondiente");
+    }
+
+    
+    @Override
     public void crearCita(Cita cita) {
         citaService.crearCita(cita);
     }
@@ -82,10 +95,18 @@ public class ServicioClinicaCompleto implements IServicioClinica {
     public void cancelarCita(int id) {
         Cita cita = citaService.obtenerCita(id);
         if (cita != null) {
-            cita.setDiagnostico("Cita cancelada por recepcion.");
+            cita.setDiagnostico("Cita cancelada por recepción.");
         }
     }
 
+    @Override
+    public void diagnosticar(Cita cita, String diagnostico) {
+        if (cita != null) {
+            cita.setDiagnostico(diagnostico);
+        }
+    }
+
+    
     @Override
     public void crearTratamiento(Tratamiento tratamiento) {
         tratamientoService.crearTratamiento(tratamiento);
@@ -97,6 +118,17 @@ public class ServicioClinicaCompleto implements IServicioClinica {
     }
 
     @Override
+    public String obtenerIndicaciones() {
+        throw new UnsupportedOperationException("obtenerIndicaciones pertenece a la entidad Tratamiento");
+    }
+
+    @Override
+    public double calcularCostoFinal() {
+        throw new UnsupportedOperationException("calcularCostoFinal pertenece a la entidad Tratamiento");
+    }
+
+    
+    @Override
     public void crearFactura(Factura factura) {
         facturaService.crearFactura(factura);
     }
@@ -106,6 +138,7 @@ public class ServicioClinicaCompleto implements IServicioClinica {
         facturaService.pagarFactura(id);
     }
 
+    
     @Override
     public List<Cita> generarReporteCitasPorVeterinario(int veterinarioId) {
         return reporteService.generarReporteCitasPorVeterinario(veterinarioId);
@@ -121,3 +154,4 @@ public class ServicioClinicaCompleto implements IServicioClinica {
         return reporteService.calcularIngresosMensual();
     }
 }
+

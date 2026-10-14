@@ -1,13 +1,24 @@
 package clinicaveterinaria.interfaces;
 
+import java.time.LocalDate;
+
 import clinicaveterinaria.model.Cita;
 import clinicaveterinaria.model.Mascota;
 import clinicaveterinaria.model.Veterinario;
 
-import java.time.LocalDate;
+
 
 public interface IVeterinarioService {
-    Cita reservarCita(Mascota mascota, Veterinario veterinario, LocalDate fecha);
+        void crearVeterinario(Veterinario veterinario);
 
-    void diagnosticar(Cita cita, String diagnostico);
+      Veterinario obtenerVeterinario(int id);
+
+        void actualizarVeterinario(Veterinario veterinario);
+
+        void eliminarVeterinario(int id);
+
+        Cita reservarCita(Mascota mascota, Veterinario veterinario, LocalDate fecha);
+
+
+
 }

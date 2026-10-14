@@ -1,17 +1,27 @@
 package clinicaveterinaria.service;
 
-import clinicaveterinaria.interfaces.IServicioClinica;
+import clinicaveterinaria.interfaces.ICitaService;
+import clinicaveterinaria.interfaces.IMascotaService;
+import clinicaveterinaria.interfaces.IVeterinarioService;
 import clinicaveterinaria.model.Cita;
-import clinicaveterinaria.model.Factura;
 import clinicaveterinaria.model.Mascota;
-import clinicaveterinaria.model.Tratamiento;
 import clinicaveterinaria.model.Veterinario;
 
-import java.util.List;
+import java.time.LocalDate;
 
 
-public class RecepcionService implements IServicioClinica {
+public class RecepcionService implements IMascotaService, IVeterinarioService, ICitaService{
     private final ServicioClinicaCompleto servicioCompleto;
+    
+    @Override
+    public Cita reservarCita(Mascota mascota, Veterinario veterinario, LocalDate fecha) {
+        throw new UnsupportedOperationException("Recepcionista no puede reservar citas.");
+    }
+
+    @Override
+    public void diagnosticar(Cita cita, String diagnostico) {
+        throw new UnsupportedOperationException("Recepcionista no puede diagnosticar.");
+    }
 
     public RecepcionService(ServicioClinicaCompleto servicioCompleto) {
         this.servicioCompleto = servicioCompleto;
@@ -54,7 +64,7 @@ public class RecepcionService implements IServicioClinica {
 
     @Override
     public void eliminarVeterinario(int id) {
-        throw new UnsupportedOperationException("Recepcion no elimina veterinarios.");
+    
     }
 
     @Override
@@ -72,38 +82,5 @@ public class RecepcionService implements IServicioClinica {
         servicioCompleto.cancelarCita(id);
     }
 
-    @Override
-    public void crearTratamiento(Tratamiento tratamiento) {
-        throw new UnsupportedOperationException("Recepcion no crea tratamientos.");
-    }
 
-    @Override
-    public double calcularTratamiento(Tratamiento tratamiento) {
-        throw new UnsupportedOperationException("Recepcion no calcula tratamientos.");
-    }
-
-    @Override
-    public void crearFactura(Factura factura) {
-        throw new UnsupportedOperationException("Recepcion no crea facturas.");
-    }
-
-    @Override
-    public void pagarFactura(int id) {
-        throw new UnsupportedOperationException("Recepcion no cobra facturas.");
-    }
-
-    @Override
-    public List<Cita> generarReporteCitasPorVeterinario(int veterinarioId) {
-        throw new UnsupportedOperationException("Recepcion no genera reportes.");
-    }
-
-    @Override
-    public List<Mascota> generarReporteMascotasPorDueno(String duenoNombre) {
-        throw new UnsupportedOperationException("Recepcion no genera reportes.");
-    }
-
-    @Override
-    public double calcularIngresosMensual() {
-        throw new UnsupportedOperationException("Recepcion no calcula ingresos.");
-    }
 }

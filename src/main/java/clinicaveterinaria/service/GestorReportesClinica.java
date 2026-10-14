@@ -9,4 +9,5 @@ public class GestorReportesClinica {
     public void imprimirResumenOperaciones() {
         System.out.println("Resumen interno: " + baseDatos.getAuditoria());
     }
+
 }
