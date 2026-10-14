@@ -4,9 +4,12 @@ public class CirugiaTratamiento extends Tratamiento {
 
     private String indicaciones;
 
-    public CirugiaTratamiento(int id, TipoTratamiento tipo, String descripcion, Double costo, String indicaciones) {
+    private Double impuesto;
+
+    public CirugiaTratamiento(int id, TipoTratamiento tipo, String descripcion, Double costo) {
         super(id,tipo,descripcion,costo);
-        this.indicaciones = indicaciones;
+        this.indicaciones = "Ayuno previo y control postoperatorio";
+        this.impuesto = 1.35;
     }
 
     @Override
@@ -16,6 +19,12 @@ public class CirugiaTratamiento extends Tratamiento {
 
     @Override
     public String obtenerIndicaciones() {
-        return "Ayuno previo y control postoperatorio";
+        return indicaciones;
     }
+
+    @Override 
+    public double getImpuesto(){
+        return impuesto;
+    }
+
 }

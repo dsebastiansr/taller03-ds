@@ -4,9 +4,12 @@ public class FisioterapiaTratamiento extends Tratamiento{
 
     private String indicaciones;
 
-    public FisioterapiaTratamiento(int id, TipoTratamiento tipo, String descripcion, double costo, String indicaciones) {
+    private Double impuesto;
+
+    public FisioterapiaTratamiento(int id, TipoTratamiento tipo, String descripcion, double costo) {
         super(id, tipo, descripcion, costo);
-        this.indicaciones = indicaciones;
+        this.indicaciones = "Repetir ceciones 2 veces por semana";
+        this.impuesto = 1.05;
     }
 
     @Override
@@ -16,8 +19,12 @@ public class FisioterapiaTratamiento extends Tratamiento{
 
     @Override
     public String obtenerIndicaciones() {
-        return "Repetir ceciones 2 veces por semana";
+        return indicaciones;
+    }
+    
+    @Override 
+    public double getImpuesto(){
+        return impuesto;
     }
 
-    
 }

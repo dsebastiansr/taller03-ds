@@ -4,17 +4,12 @@ public class TratamientoVacuna extends Tratamiento{
 
     private String indicaciones;
 
-    public TratamientoVacuna(int id, TipoTratamiento tipo, String descripcion, double costo, String indicaciones){
+    private Double impuesto;
+
+    public TratamientoVacuna(int id, TipoTratamiento tipo, String descripcion, double costo){
         super(id,tipo,descripcion,costo);
-        this.indicaciones = indicaciones;
-    }
-
-    public String getIndicaciones() {
-        return indicaciones;
-    }
-
-    public void setIndicaciones(String indicaciones) {
-        this.indicaciones = indicaciones;
+        this.indicaciones = "Observar fieber durante dos horas";
+        this.impuesto = 1.12;
     }
 
     @Override
@@ -24,8 +19,12 @@ public class TratamientoVacuna extends Tratamiento{
 
     @Override
     public String obtenerIndicaciones() {
-        return "Observar fieber durante dos horas";
+        return indicaciones;
     }
 
+    @Override 
+    public double getImpuesto(){
+        return impuesto;
+    }
     
 }
